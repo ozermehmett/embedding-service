@@ -1,0 +1,16 @@
+services:
+  embedding-service:
+    build: .
+    container_name: embedding-service
+    ports:
+      - "${API_PORT:-8000}:8000"
+    env_file:
+      - .env
+    environment:
+      - API_HOST=0.0.0.0
+    restart: unless-stopped
+    volumes:
+      - model_cache:/root/.cache/huggingface
+
+volumes:
+  model_cache:
