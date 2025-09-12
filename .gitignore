@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+
+# Virtual Environment
+.env
+.venv
+env/
+venv/
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model Cache
+models/
+.cache/
+~/.cache/huggingface/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Local config
+.env.local
+config.local.*
