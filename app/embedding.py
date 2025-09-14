@@ -16,6 +16,8 @@ class EmbeddingEngine:
         self.models = {}
         self.default_model = os.getenv('DEFAULT_MODEL', 'all-MiniLM-L6-v2')
         logger.info(f"Default Model: {self.default_model}")
+        self.load_model(self.default_model)
+
         
     def load_model(self, model_name: str) -> SentenceTransformer:
         """Load and cache the model"""
@@ -34,17 +36,12 @@ class EmbeddingEngine:
         if model_name is None:
             model_name = self.default_model
             
-        # Tek string ise liste yap
         if isinstance(texts, str):
             texts = [texts]
                     
-        try:
-            # Model yükle
-            model = self.load_model(model_name)
-            
-            # Embedding oluştur
+        try:            
+            model = self.models.get(model_name) or self.load_model(model_name)
             embeddings = model.encode(texts)
-                        
             return embeddings.tolist()
             
         except Exception as e:
